@@ -37,9 +37,10 @@
         <button
           type="button"
           class="btn btn-primary mr-3"
-          
+          id="addBtn"
         >
-          Add TODO
+          ADD TODO
+          <!-- <a href="{{url_for('main.add', content='hello')}}" style='color: white;'>ADD TODO</a> -->
         </button>
         
       </div>
@@ -55,29 +56,65 @@
             </tr>
           </thead>
           <tbody>
-            <tr
+             <tr
               
-              class="{{ task.status ? 'table-success' : 'table-light' }}"
+              "
             >
-              <td>Task Number</td>
-              <td class="{{ task.status ? 'complete' : 'task' }}">
+              <td>t.id</td>
+              <td>
                 Task Name
               </td>
               <td>Task Status</td>
               <td>
                 <button class="btn btn-danger">
-                  Delete
+                  
                 </button>
                 <button class="btn btn-success">
                   Finished
                 </button>
               </td>
-            </tr>
+            </tr> 
+            {% for each in data %}
+            <tr
+              
+            "
+          >
+            <td>{{each.id}}</td>
+            <td>
+              {{each.data}}
+            </td>
+            {% if each.finished %}
+            <td>Finished</td>
+            {% else %}
+            <td>Active</td>
+            {% endif %}
+
+            <td>
+              <button class="btn btn-danger">
+                <a href="{{url_for('main.delete', id=each.id)}}" style="color: white;">Delete</a>
+              </button>
+              <button class="btn btn-success">
+                Finished
+              </button>
+              <button class="btn btn-primary">
+                <a href="{{url_for('main.update', id=each.id)}}" style="color: white;">Update</a>
+              </button>
+            </td>
+          </tr> 
+            {% endfor %}
+            
           </tbody>
         </table>
       </div>
     </div>
-    
+    <script>
+      let todo = document.getElementById("formGroupExampleInput")
+      let btn = document.getElementById("addBtn")
+      btn.addEventListener("click", () => {
+        val = todo.value
+        window.location.href = `/add/${val}`
+      })
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
