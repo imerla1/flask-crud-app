@@ -47,3 +47,18 @@ def update(id):
 
     else:
         return render_template('update.html', task=task)
+
+
+@main.route('/finished/<int:id>', methods=['GET', 'POST'])
+def finished(id):
+    task = Todo.query.get_or_404(id)
+
+    try:
+        task.finished = True
+        
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    except:
+        return "Error"
+
+    

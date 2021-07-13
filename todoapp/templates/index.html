@@ -56,24 +56,6 @@
             </tr>
           </thead>
           <tbody>
-             <tr
-              
-              "
-            >
-              <td>t.id</td>
-              <td>
-                Task Name
-              </td>
-              <td>Task Status</td>
-              <td>
-                <button class="btn btn-danger">
-                  
-                </button>
-                <button class="btn btn-success">
-                  Finished
-                </button>
-              </td>
-            </tr> 
             {% for each in data %}
             <tr
               
@@ -94,7 +76,7 @@
                 <a href="{{url_for('main.delete', id=each.id)}}" style="color: white;">Delete</a>
               </button>
               <button class="btn btn-success">
-                Finished
+                <a href="{{url_for('main.finished', id=each.id)}}" style="color:white;">Finished</a>
               </button>
               <button class="btn btn-primary">
                 <a href="{{url_for('main.update', id=each.id)}}" style="color: white;">Update</a>
